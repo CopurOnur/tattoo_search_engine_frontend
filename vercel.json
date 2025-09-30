@@ -35,12 +35,5 @@
         }
       ]
     }
-  ],
-  "redirects": [
-    {
-      "source": "/",
-      "destination": "/projects/tattoo-search",
-      "permanent": false
-    }
   ]
 }
