@@ -58,17 +58,10 @@ export default function TattooSearch() {
       })
       const searchUrl = `${BACKEND_URL}/search?${params.toString()}`
 
-      // Create AbortController for timeout
-      const controller = new AbortController()
-      const timeoutId = setTimeout(() => controller.abort(), 60000) // 60 second timeout
-
       const response = await fetch(searchUrl, {
         method: 'POST',
         body: formData,
-        signal: controller.signal,
       })
-
-      clearTimeout(timeoutId)
 
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`)
@@ -85,16 +78,11 @@ export default function TattooSearch() {
       }
     } catch (err) {
       console.error('Search error:', err)
-
-      if (err instanceof Error && err.name === 'AbortError') {
-        setError('Search timed out (60s). The backend may be slow to respond. Please try again.')
-      } else {
-        setError(
-          err instanceof Error
-            ? `Search failed: ${err.message}`
-            : 'An error occurred while searching. Please try again.'
-        )
-      }
+      setError(
+        err instanceof Error
+          ? `Search failed: ${err.message}`
+          : 'An error occurred while searching. Please try again.'
+      )
     } finally {
       setIsLoading(false)
     }
@@ -103,7 +91,11 @@ export default function TattooSearch() {
   // Check if current model supports patch attention
   const modelSupportsPatchAttention = (model: string) => {
     // All current models support patch attention
-    return ['clip', 'dinov2', 'siglip'].includes(model.toLowerCase())
+    const normalizedModel = model.toLowerCase()
+    return normalizedModel === 'clip' ||
+           normalizedModel.startsWith('dinov2') ||
+           normalizedModel.startsWith('dinov3') ||
+           normalizedModel === 'siglip'
   }
 
   // Handle detailed analysis request
@@ -126,17 +118,10 @@ export default function TattooSearch() {
 
       const analysisUrl = `${BACKEND_URL}/analyze-attention?${params.toString()}`
 
-      // Create AbortController for timeout
-      const controller = new AbortController()
-      const timeoutId = setTimeout(() => controller.abort(), 60000) // 60 second timeout
-
       const response = await fetch(analysisUrl, {
         method: 'POST',
         body: formData,
-        signal: controller.signal,
       })
-
-      clearTimeout(timeoutId)
 
       if (!response.ok) {
         throw new Error(`Analysis failed: ${response.status}`)
@@ -147,16 +132,11 @@ export default function TattooSearch() {
 
     } catch (err) {
       console.error('Analysis error:', err)
-
-      if (err instanceof Error && err.name === 'AbortError') {
-        setError('Analysis timed out (60s). The backend may be slow to respond. Please try again.')
-      } else {
-        setError(
-          err instanceof Error
-            ? `Analysis failed: ${err.message}`
-            : 'Failed to analyze patch attention. Please try again.'
-        )
-      }
+      setError(
+        err instanceof Error
+          ? `Analysis failed: ${err.message}`
+          : 'Failed to analyze patch attention. Please try again.'
+      )
     } finally {
       setAnalysisLoading(false)
     }
