@@ -6,6 +6,7 @@ import ModelSelector from '@/components/ModelSelector'
 import PatchAttentionToggle from '@/components/PatchAttentionToggle'
 import AttentionAnalysisPanel from '@/components/AttentionAnalysisPanel'
 import PatchCorrespondenceViewer from '@/components/PatchCorrespondenceViewer'
+import ExampleGallery from '@/components/ExampleGallery'
 import { SearchResult, SearchResponse, DetailedAttentionAnalysis } from '@/types/search'
 
 const BACKEND_URL = process.env.NEXT_PUBLIC_BACKEND_URL || 'https://onurcopur-tattoo-search-engine.hf.space'
@@ -148,6 +149,22 @@ export default function TattooSearch() {
     setSelectedResultForAnalysis(null)
   }
 
+  // Handle example image selection
+  const handleExampleSelect = async (url: string, filename: string) => {
+    try {
+      // Fetch the image and convert to File object
+      const response = await fetch(url)
+      const blob = await response.blob()
+      const file = new File([blob], filename, { type: blob.type })
+
+      // Use the same handler as regular file upload
+      handleImageSelect(file)
+    } catch (err) {
+      console.error('Failed to load example image:', err)
+      setError('Failed to load example image. Please try another one or upload your own.')
+    }
+  }
+
   return (
     <>
       <Head>
@@ -179,6 +196,16 @@ export default function TattooSearch() {
               isLoading={isLoading}
             />
           </div>
+
+          {/* Example Gallery - only show when no image selected and no search performed */}
+          {!selectedImage && !hasSearched && (
+            <div className="mb-8">
+              <ExampleGallery
+                onExampleSelect={handleExampleSelect}
+                disabled={isLoading}
+              />
+            </div>
+          )}
 
           {/* Model Selection */}
           {selectedImage && (

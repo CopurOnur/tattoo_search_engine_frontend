@@ -2,7 +2,7 @@ import { useState, useRef, DragEvent, ChangeEvent } from 'react'
 import Image from 'next/image'
 
 interface ImageUploadProps {
-  onImageSelect: (file: File) => void
+  onImageSelect: (file: File | null) => void
   selectedImage: File | null
   isLoading: boolean
 }
