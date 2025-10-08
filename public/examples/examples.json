@@ -1,30 +1,30 @@
 [
   {
-    "id": "minimalist-mountain",
-    "name": "Minimalist Mountain",
-    "description": "Simple geometric mountain design",
-    "url": "https://i.pinimg.com/736x/11/74/18/117418fdb654d1e779d1eff5440a2368.jpg",
-    "category": ""
+    "id": "minimalist",
+    "name": "Minimalist",
+    "description": "Simple minimalist line art design",
+    "url": "/examples/minimalist.jpg",
+    "category": "minimalist"
   },
   {
-    "id": "traditional-rose",
-    "name": "Traditional Rose",
-    "description": "Classic traditional style rose",
-    "url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRwquvTmdUHlyNy-ueuahGwZ0Bw4SdxlShBNg&s",
-    "category": ""
+    "id": "traditional",
+    "name": "Traditional",
+    "description": "Classic traditional style tattoo",
+    "url": "/examples/traditional.jpg",
+    "category": "traditional"
   },
   {
-    "id": "geometric-pattern",
-    "name": "Geometric Pattern",
-    "description": "Abstract geometric design",
-    "url": "https://i.pinimg.com/736x/0e/55/b8/0e55b81f8328c27981f891b12db9be42.jpg",
-    "category": ""
+    "id": "geometric",
+    "name": "Geometric",
+    "description": "Geometric pattern design",
+    "url": "/examples/geometric.jpg",
+    "category": "geometric"
   },
   {
-    "id": "floral-design",
-    "name": "Floral Design",
+    "id": "floral",
+    "name": "Floral",
     "description": "Delicate floral artwork",
-    "url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTB5D25k1envwXtQOaWMc21rnlCdSxUfe_IIQ&s",
-    "category": ""
+    "url": "/examples/floral.jpg",
+    "category": "floral"
   }
 ]

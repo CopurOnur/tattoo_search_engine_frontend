@@ -152,16 +152,24 @@ export default function TattooSearch() {
   // Handle example image selection
   const handleExampleSelect = async (url: string, filename: string) => {
     try {
-      // Fetch the image and convert to File object
+      // Fetch the local image
       const response = await fetch(url)
+
+      if (!response.ok) {
+        throw new Error(`Failed to fetch image: ${response.status}`)
+      }
+
       const blob = await response.blob()
-      const file = new File([blob], filename, { type: blob.type })
+
+      // Ensure the blob has a valid type
+      const fileType = blob.type || 'image/jpeg'
+      const file = new File([blob], filename, { type: fileType })
 
       // Use the same handler as regular file upload
       handleImageSelect(file)
     } catch (err) {
       console.error('Failed to load example image:', err)
-      setError('Failed to load example image. Please try another one or upload your own.')
+      setError('Failed to load example image. Please try another example or upload your own image.')
     }
   }
 
