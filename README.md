@@ -12,7 +12,7 @@ AI-powered tattoo image search engine built with Next.js. Upload a tattoo image 
 
 ## 🚀 Live Demo
 
-🌐 **[View Live Demo](https://tattoo-search-frontend.vercel.app)**
+🌐 **[View Live Demo](https://tattoo-search-engine-frontend.vercel.app)**
 
 ## 🛠️ Technology Stack
 
